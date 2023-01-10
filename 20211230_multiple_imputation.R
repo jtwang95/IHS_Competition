@@ -5,8 +5,9 @@ library(tidyverse)
 options(nwarnings = 10000000)
 
 # set working dictionary
-setwd(dirname(rstudioapi::getSourceEditorContext()$path))
-
+# setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+setwd("~/../Dropbox (University of Michigan)/IHS_competition/competition analysis/")
+setwd("~/Dropbox (University of Michigan)/IHS_competition/competition analysis/")
 # prepare all the data needed
 
 ## setting
@@ -387,3 +388,9 @@ c(
   "Transitional",
   "Urology"
 ) #23
+
+tmp = read_csv("../competition/2020 access code_All subjects.csv")
+length(unique(tmp$USERID)) # 2286
+x = unique(tmp$USERID) # 2286
+tmp = read_csv("../survey data/IHSdata_2020blq1q2_01042021.csv") %>% select(UserID,Sex)
+tmp %>% filter(UserID %in% x) %>% select(Sex) %>% table()
